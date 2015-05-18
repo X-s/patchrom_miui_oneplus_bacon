@@ -7,8 +7,6 @@ Subject: [PATCH] nav transf
  smali/com/android/systemui/statusbar/phone/PhoneStatusBar.smali | 4 ++--
  1 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/MiuiSystemUI/smali/com/android/systemui/statusbar/phone/PhoneStatusBar.smali b/MiuiSystemUI/smali/com/android/systemui/statusbar/phone/PhoneStatusBar.smali
-index f046dd4..da86c57 100644
 --- a/MiuiSystemUI/smali/com/android/systemui/statusbar/phone/PhoneStatusBar.smali
 +++ b/MiuiSystemUI/smali/com/android/systemui/statusbar/phone/PhoneStatusBar.smali
 @@ -3007,9 +3007,9 @@
