@@ -12,7 +12,7 @@ local-out-zip-file := MIUI_bacon.zip
 local-previous-target-dir := 
 
 # All apps from original ZIP, but has smali files chanded
-local-modified-apps :=
+local-modified-apps := Bluetooth
 
 local-modified-jars :=
 
@@ -54,11 +54,17 @@ local-pre-zip-misc:
 		sed -i 's/ro.sf.lcd_density/persist.xsdensity/g' $(ZIP_DIR)/system/lib/libsurfaceflinger.so
 		@echo "[XS CUST] edit build.prop"
 		sed -i 's/ro.product.manufacturer=OnePlus/ro.product.manufacturer=ONEPLUS/g' $(ZIP_DIR)/system/build.prop
-		sed -i '/ro.sf.lcd_density=480/apersist.xsdensity=480' $(ZIP_DIR)/system/build.prop
+		echo "#XS ADD" >> $(ZIP_DIR)/system/build.prop
+		echo "persist.xsdensity=480" >> $(ZIP_DIR)/system/build.prop
+		echo "persist.audio.fluence.voicerec=false" >> $(ZIP_DIR)/system/build.prop
+		echo "persist.audio.fluence.speaker=false" >> $(ZIP_DIR)/system/build.prop
 		@echo "[XS CUST] Fix: Transparent on search panel"
 		mv $(ZIP_DIR)/system/app/QuickSearchBox.apk $(ZIP_DIR)/system/priv-app/QuickSearchBox.apk
 		@echo "[XS CUST] change selinux"
 		sed -i '4asetenforce 0' $(ZIP_DIR)/system/bin/sysinit
+		@echo "[XS CUST] remove cm log and add miui log"
+		rm -rf $(ZIP_DIR)/system/etc/CHANGELOG-CM.txt
+		cp CHANGELOG-MIUI.txt $(ZIP_DIR)/system/etc/CHANGELOG-MIUI.txt
 		@echo "[XS CUST] goodbye! miui prebuilt binaries!"
 		cp -rf stockrom/system/bin/app_process $(ZIP_DIR)/system/bin/app_process
 		rm -rf $(ZIP_DIR)/system/bin/debuggerd_vendor
